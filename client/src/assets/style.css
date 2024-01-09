@@ -1,0 +1,60 @@
+.wraper{
+    font-size: 25px;
+    line-height: 30px;
+    background-color: rgb(232, 226, 226);
+    width: 75%;
+    margin: 0 auto;
+}
+.wraper div{
+    margin-left: 150px;
+}
+.wraper h3{
+    text-align: center;
+    text-decoration: underline;
+}
+
+.navBar{
+    width: 75%;
+    font-size: 25px;
+    text-align: center;
+    margin-top: 20px;
+    background-color: rgb(232, 226, 226);
+    margin: 0 auto;
+    }
+.nav_item{
+    padding: 20px 25px;
+    text-decoration: none;
+}
+
+.ListTable{
+    width: 100%;
+    font-size: 18px;
+    padding: 8px;
+    border-collapse: collapse;
+}
+.ListTable td{
+    border: 1px solid #ddd;
+    
+}
+
+
+
+.deleteBtn{
+    background-color: #595e5c; /* Green */
+  border: none;
+  font-size: 18px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  margin: 4px 8px;
+  cursor: pointer;
+}
+
+.editLink{
+    background-color: #f44336;
+  color: white;
+  font-size: 18px;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+}
