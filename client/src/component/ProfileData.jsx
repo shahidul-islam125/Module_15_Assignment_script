@@ -57,10 +57,10 @@ const ProfileData = () => {
                   <td>{item["dateOfBirth"]}</td>
                   <td>{item["address"]}</td>
                   <td>{item["email"]}</td>
-                  <td>{item["mobileNumber"]}</td>
+                  <td>{item["phone"]}</td>
                   <td>{item["nationality"]}</td>
                   <td>{item["admissionDate"]}</td>
-                  <td>{item["course"]}</td>
+                  <td>{item["courses"]}</td>
                   <td>
                     <button
                       className="deleteBtn"

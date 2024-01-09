@@ -30,7 +30,7 @@ const dataSchema = mongoose.Schema({
         // unique: true,
         // match: /^\S+@\S+\.\S+$/
       },
-    mobileNumber: {
+    phone: {
         type: String
         // unique: true,
         //Validation BD Mobile No
@@ -46,7 +46,7 @@ const dataSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    course: {
+    courses: {
         type: String
     }
 

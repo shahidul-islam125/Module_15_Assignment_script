@@ -23,7 +23,7 @@ app.use(sanitizePlugin())
 //Set  request rate limit
 const limiter = rateLimit({
     windowMs: 60 * 60 * 1000,
-    max: 100,
+    max: 300,
     message: "Rate limit exceed try again later",
     statusCode: 429,
     headers:true

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import {toast, Toaster} from "react-hot-toast";
-import { createProfile, readProfileByID } from '../APIRequest/APIRequest';
+import { createProfile, readProfileByID, updateProfile } from '../APIRequest/APIRequest';
 import {useNavigate} from 'react-router-dom'
 
 const RegistrationForm = () => {
-    let [FormValue, SetFormValue] = useState({firstName:"", lastName:"",gender:"", dateOfBirth: "", address: "", email:"", mobileNumber: "",nationality:"",  admissionDate:"", course:""})
+    let [FormValue, SetFormValue] = useState({firstName:"", lastName:"",gender:"", dateOfBirth: "", address: "", email:"", phone: "",nationality:"",  admissionDate:"", courses:""})
 
     let [UpdateID, SetUpdateID] = useState(null)
 
@@ -28,10 +28,10 @@ const RegistrationForm = () => {
             dateOfBirth: res[0]['dateOfBirth'],
             address: res[0]['address'], 
             email:res[0]['email'], 
-            mobileNumber: res[0]['mobileNumber'],
+            phone: res[0]['phone'],
             nationality:res[0]['nationality'],  
             admissionDate:res[0]['admissionDate'], 
-            course:res[0]['course'] 
+            courses:res[0]['courses'] 
         })
         
         
@@ -57,7 +57,7 @@ const RegistrationForm = () => {
         else if(FormValue.email.length===0){
             toast.error("email Required !")
         }
-        else if(FormValue.mobileNumber.length===0){
+        else if(FormValue.phone.length===0){
             toast.error("mobileNumber Required !")
         }
         else if(FormValue.nationality.length===0){
@@ -66,21 +66,29 @@ const RegistrationForm = () => {
         else if(FormValue.admissionDate.length===0){
             toast.error("admissionDate Required !")
         }
-        else if(FormValue.course.length===0){
+        else if(FormValue.courses.length===0){
             toast.error("course Required !")
         }
         else{
-            console.log(FormValue)
-            let res=await createProfile(FormValue);
-            if(res){
-            toast.success("Save successfully")
-            setTimeout(() => navigate('/'), 1000);
-            
-            }else{
-                toast.error("Request Fail!")
+            if(UpdateID === null){
+                    let res=await createProfile(FormValue);
+                if(res){
+                    toast.success("Save successfully")
+                    setTimeout(() => navigate('/'), 1000);
+                }else{
+                    toast.error("Request Fail!")
             }
+            }else{
+                let res=await updateProfile(UpdateID, FormValue);
+                if(res){
+                    toast.success("Successfully updated")
+                    setTimeout(() => navigate('/'), 1000);
+                }else{
+                    toast.error("Request Fail!")
+                }
+            }
+            
         }
-
     }
 
     const InputOnChange = (name, value) => {
@@ -121,7 +129,7 @@ const RegistrationForm = () => {
             </div>              
             <div>
                 <label>Mobile Number</label>
-                <input value={FormValue.mobileNumber} onChange={(e) => InputOnChange('mobileNumber', e.target.value)} type="text" name="Mobile_Number" />
+                <input value={FormValue.phone} onChange={(e) => InputOnChange('phone', e.target.value)} type="text" name="Mobile_Number" />
             </div>              
             <div>
                 <label>Nationality</label>
@@ -132,10 +140,10 @@ const RegistrationForm = () => {
                 <input value={FormValue.admissionDate} onChange={(e) => InputOnChange('admissionDate', e.target.value)} type="text" name="Admission_date" />
             </div>              
             <div>
-                <label>Course</label><br/>
-                <input type="radio" name="Web_Development" value="Web Development" checked={FormValue.course === 'Web Development'} onChange={(e) => InputOnChange('course',e.target.value)}/>Web Development <br/>
+                <label>Courses</label><br/>
+                <input type="radio" name="Web_Development" value="Web Development" checked={FormValue.courses === 'Web Development'} onChange={(e) => InputOnChange('courses',e.target.value)}/>Web Development <br/>
 
-                <input type="radio" name="Graphics_Designer" value="Graphics Designer" checked={FormValue.course === 'Graphics Designer'} onChange={(e) => InputOnChange('course',e.target.value)}/>Graphics Designer 
+                <input type="radio" name="Graphics_Designer" value="Graphics Designer" checked={FormValue.courses === 'Graphics Designer'} onChange={(e) => InputOnChange('courses',e.target.value)}/>Graphics Designer 
 
             </div>              
             <div> 

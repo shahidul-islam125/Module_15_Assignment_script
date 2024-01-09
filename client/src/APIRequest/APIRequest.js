@@ -54,8 +54,8 @@ export async function deleteProfile(id){
     }
 }
 
-//Create
-export async function updateProfile(postBody){
+//Update
+export async function updateProfile(id, postBody){
     try {
         let res=await axios.post("http://localhost:3300/api/update/" +id,postBody);
         if(res.status===200){
